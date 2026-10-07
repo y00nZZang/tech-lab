@@ -1,0 +1,76 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: grpc-lb-lab
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend
+  namespace: grpc-lb-lab
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: backend
+  template:
+    metadata:
+      labels:
+        app: backend
+    spec:
+      containers:
+        - name: backend
+          image: grpc-k8s-lab:local
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: WORK_MS
+              value: "50"
+            - name: MAX_CONCURRENCY
+              value: "4"
+            - name: MAX_CONNECTION_AGE_MS
+              value: "0"
+            - name: ENABLE_CHANNELZ
+              value: "1"
+          ports:
+            - name: grpc
+              containerPort: 50051
+          readinessProbe:
+            tcpSocket:
+              port: grpc
+            initialDelaySeconds: 1
+            periodSeconds: 1
+          resources:
+            requests:
+              cpu: 50m
+              memory: 64Mi
+            limits:
+              cpu: 500m
+              memory: 128Mi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend-cluster-ip
+  namespace: grpc-lb-lab
+spec:
+  sessionAffinity: None
+  selector:
+    app: backend
+  ports:
+    - name: grpc
+      port: 50051
+      targetPort: grpc
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend-headless
+  namespace: grpc-lb-lab
+spec:
+  clusterIP: None
+  selector:
+    app: backend
+  ports:
+    - name: grpc
+      port: 50051
+      targetPort: grpc

@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package lab;
+
+service Backend {
+  rpc Work(WorkRequest) returns (WorkResponse);
+}
+
+message WorkRequest {
+  int32 sequence = 1;
+}
+
+message WorkResponse {
+  int32 sequence = 1;
+  string pod = 2;
+  double queue_wait_ms = 3;
+  double service_ms = 4;
+}

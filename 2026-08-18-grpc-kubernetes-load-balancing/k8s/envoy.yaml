@@ -1,0 +1,145 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: envoy-proxy-config
+  namespace: grpc-lb-lab
+data:
+  envoy.yaml: |
+    admin:
+      access_log_path: /dev/null
+      address:
+        socket_address:
+          address: 127.0.0.1
+          port_value: 9901
+    static_resources:
+      listeners:
+      - name: grpc_l7_listener
+        address:
+          socket_address:
+            address: 0.0.0.0
+            port_value: 50051
+        filter_chains:
+        - filters:
+          - name: envoy.filters.network.http_connection_manager
+            typed_config:
+              "@type": type.googleapis.com/envoy.extensions.filters.network.http_connection_manager.v3.HttpConnectionManager
+              stat_prefix: grpc_l7
+              codec_type: AUTO
+              route_config:
+                name: grpc_routes
+                virtual_hosts:
+                - name: backend
+                  domains: ["*"]
+                  routes:
+                  - match:
+                      prefix: "/"
+                    route:
+                      cluster: grpc_backends
+                      timeout: 0s
+              http_filters:
+              - name: envoy.filters.http.router
+                typed_config:
+                  "@type": type.googleapis.com/envoy.extensions.filters.http.router.v3.Router
+      - name: tcp_listener
+        address:
+          socket_address:
+            address: 0.0.0.0
+            port_value: 50052
+        filter_chains:
+        - filters:
+          - name: envoy.filters.network.tcp_proxy
+            typed_config:
+              "@type": type.googleapis.com/envoy.extensions.filters.network.tcp_proxy.v3.TcpProxy
+              stat_prefix: grpc_tcp
+              cluster: grpc_backends
+              idle_timeout: 0s
+      clusters:
+      - name: grpc_backends
+        type: STRICT_DNS
+        connect_timeout: 1s
+        dns_lookup_family: V4_ONLY
+        dns_refresh_rate: 1s
+        lb_policy: ROUND_ROBIN
+        load_assignment:
+          cluster_name: grpc_backends
+          endpoints:
+          - lb_endpoints:
+            - endpoint:
+                address:
+                  socket_address:
+                    address: backend-headless.grpc-lb-lab.svc.cluster.local
+                    port_value: 50051
+        typed_extension_protocol_options:
+          envoy.extensions.upstreams.http.v3.HttpProtocolOptions:
+            "@type": type.googleapis.com/envoy.extensions.upstreams.http.v3.HttpProtocolOptions
+            explicit_http_config:
+              http2_protocol_options: {}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: envoy-proxy
+  namespace: grpc-lb-lab
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: envoy-proxy
+  template:
+    metadata:
+      labels:
+        app: envoy-proxy
+    spec:
+      containers:
+      - name: envoy
+        image: envoyproxy/envoy:v1.39.1
+        imagePullPolicy: IfNotPresent
+        args:
+        - -c
+        - /etc/envoy/envoy.yaml
+        - --service-cluster
+        - grpc-lb-lab
+        - --log-level
+        - info
+        ports:
+        - name: grpc-l7
+          containerPort: 50051
+        - name: grpc-tcp
+          containerPort: 50052
+        readinessProbe:
+          tcpSocket:
+            port: grpc-l7
+          initialDelaySeconds: 2
+          periodSeconds: 2
+        resources:
+          requests:
+            cpu: 50m
+            memory: 64Mi
+          limits:
+            cpu: 500m
+            memory: 256Mi
+        volumeMounts:
+        - name: envoy-config
+          mountPath: /etc/envoy
+          readOnly: true
+      volumes:
+      - name: envoy-config
+        configMap:
+          name: envoy-proxy-config
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: envoy-proxy
+  namespace: grpc-lb-lab
+spec:
+  selector:
+    app: envoy-proxy
+  ports:
+  - name: grpc-l7
+    appProtocol: grpc
+    port: 50051
+    targetPort: grpc-l7
+  - name: grpc-tcp
+    port: 50052
+    targetPort: grpc-tcp

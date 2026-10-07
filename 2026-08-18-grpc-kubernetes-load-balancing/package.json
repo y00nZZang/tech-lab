@@ -1,0 +1,19 @@
+{
+  "name": "grpc-kubernetes-load-balancing-lab",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "server": "node src/server.js",
+    "client": "node src/client.js",
+    "watch-connections": "node src/watch-connections.js"
+  },
+  "dependencies": {
+    "@grpc/grpc-js": "1.14.4",
+    "@grpc/proto-loader": "0.8.1"
+  },
+  "packageManager": "pnpm@11.21.0"
+}

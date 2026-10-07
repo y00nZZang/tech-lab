@@ -10,4 +10,6 @@ okf_version: "0.2"
 
 ## Experiments
 
-아직 등록된 실험이 없습니다.
+- [Kubernetes에서 장수명 gRPC 연결의 Pod 고정과 로드밸런싱](2026-08-18-grpc-kubernetes-load-balancing/README.md) - ClusterIP, Headless Service, Channelz, Envoy TCP/L7 프록시와 Istio sidecar 분산을 비교합니다. [Envoy 1차 결과](2026-08-18-grpc-kubernetes-load-balancing/results/2026-10-06-envoy.md) (draft)
+
+- [Istio sidecar 1회 결과](2026-08-18-grpc-kubernetes-load-balancing/results/2026-10-07-istio.md) — 사용자 제공 실습 출력, 일반화하지 않은 관찰.

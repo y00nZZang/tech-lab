@@ -1,0 +1,13 @@
+{"event":"watcher_started","observed_at":"2026-09-27T09:56:46.881Z","backend_ips":["10.244.0.26","10.244.0.27"],"interval_ms":100,"duration_ms":30000}
+{"event":"watcher_ready","observed_at":"2026-09-27T09:56:46.927Z","backend_ip":"10.244.0.26","preexisting_connections":0}
+{"event":"watcher_ready","observed_at":"2026-09-27T09:56:46.928Z","backend_ip":"10.244.0.27","preexisting_connections":0}
+{"event":"connection_open","observed_at":"2026-09-27T09:56:55.782Z","backend_ip":"10.244.0.26","socketId":"221","local":"10.244.0.26:50051","remote":"10.244.0.31:44904"}
+{"event":"connection_open","observed_at":"2026-09-27T09:57:00.357Z","backend_ip":"10.244.0.26","socketId":"227","local":"10.244.0.26:50051","remote":"10.244.0.31:44912"}
+{"event":"connection_closed","observed_at":"2026-09-27T09:57:00.357Z","backend_ip":"10.244.0.26","socketId":"221","local":"10.244.0.26:50051","remote":"10.244.0.31:44904"}
+{"event":"connection_closed","observed_at":"2026-09-27T09:57:05.614Z","backend_ip":"10.244.0.26","socketId":"227","local":"10.244.0.26:50051","remote":"10.244.0.31:44912"}
+{"event":"connection_open","observed_at":"2026-09-27T09:57:05.720Z","backend_ip":"10.244.0.26","socketId":"235","local":"10.244.0.26:50051","remote":"10.244.0.31:51970"}
+{"event":"channelz_poll_error","observed_at":"2026-09-27T09:57:07.372Z","backend_ip":"10.244.0.26","message":"5 NOT_FOUND: No socket data found for id 231"}
+{"event":"connection_closed","observed_at":"2026-09-27T09:57:10.499Z","backend_ip":"10.244.0.26","socketId":"235","local":"10.244.0.26:50051","remote":"10.244.0.31:51970"}
+{"event":"connection_open","observed_at":"2026-09-27T09:57:10.609Z","backend_ip":"10.244.0.27","socketId":"234","local":"10.244.0.27:50051","remote":"10.244.0.31:36692"}
+{"event":"connection_closed","observed_at":"2026-09-27T09:57:11.480Z","backend_ip":"10.244.0.27","socketId":"234","local":"10.244.0.27:50051","remote":"10.244.0.31:36692"}
+{"event":"watcher_stopped","observed_at":"2026-09-27T09:57:16.963Z","backend_ips":["10.244.0.26","10.244.0.27"]}
