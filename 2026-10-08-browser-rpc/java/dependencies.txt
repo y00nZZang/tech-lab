@@ -1,0 +1,106 @@
+lab:spring-armeria-lab:jar:0.1.0
++- org.springframework.boot:spring-boot-starter-web:jar:3.5.16:compile
+|  +- org.springframework.boot:spring-boot-starter:jar:3.5.16:compile
+|  |  +- org.springframework.boot:spring-boot:jar:3.5.16:compile
+|  |  +- org.springframework.boot:spring-boot-autoconfigure:jar:3.5.16:compile
+|  |  +- org.springframework.boot:spring-boot-starter-logging:jar:3.5.16:compile
+|  |  |  +- ch.qos.logback:logback-classic:jar:1.5.34:compile
+|  |  |  |  \- ch.qos.logback:logback-core:jar:1.5.34:compile
+|  |  |  +- org.apache.logging.log4j:log4j-to-slf4j:jar:2.24.3:compile
+|  |  |  |  \- org.apache.logging.log4j:log4j-api:jar:2.24.3:compile
+|  |  |  \- org.slf4j:jul-to-slf4j:jar:2.0.18:compile
+|  |  +- jakarta.annotation:jakarta.annotation-api:jar:2.1.1:compile
+|  |  +- org.springframework:spring-core:jar:6.2.19:compile
+|  |  |  \- org.springframework:spring-jcl:jar:6.2.19:compile
+|  |  \- org.yaml:snakeyaml:jar:2.4:compile
+|  +- org.springframework.boot:spring-boot-starter-json:jar:3.5.16:compile
+|  |  +- com.fasterxml.jackson.core:jackson-databind:jar:2.21.4:compile
+|  |  +- com.fasterxml.jackson.datatype:jackson-datatype-jdk8:jar:2.21.4:compile
+|  |  +- com.fasterxml.jackson.datatype:jackson-datatype-jsr310:jar:2.21.4:compile
+|  |  \- com.fasterxml.jackson.module:jackson-module-parameter-names:jar:2.21.4:compile
+|  +- org.springframework.boot:spring-boot-starter-tomcat:jar:3.5.16:compile
+|  |  +- org.apache.tomcat.embed:tomcat-embed-core:jar:10.1.55:compile
+|  |  +- org.apache.tomcat.embed:tomcat-embed-el:jar:10.1.55:compile
+|  |  \- org.apache.tomcat.embed:tomcat-embed-websocket:jar:10.1.55:compile
+|  +- org.springframework:spring-web:jar:6.2.19:compile
+|  |  +- org.springframework:spring-beans:jar:6.2.19:compile
+|  |  \- io.micrometer:micrometer-observation:jar:1.15.12:compile
+|  |     \- io.micrometer:micrometer-commons:jar:1.15.12:compile
+|  \- org.springframework:spring-webmvc:jar:6.2.19:compile
+|     +- org.springframework:spring-aop:jar:6.2.19:compile
+|     +- org.springframework:spring-context:jar:6.2.19:compile
+|     \- org.springframework:spring-expression:jar:6.2.19:compile
++- com.linecorp.armeria:armeria-grpc:jar:1.42.0:compile
+|  +- com.linecorp.armeria:armeria:jar:1.42.0:compile
+|  |  +- com.fasterxml.jackson.core:jackson-core:jar:2.21.4:compile
+|  |  +- com.fasterxml.jackson.core:jackson-annotations:jar:2.21:compile
+|  |  +- io.micrometer:micrometer-core:jar:1.15.12:compile
+|  |  |  +- org.hdrhistogram:HdrHistogram:jar:2.2.2:runtime
+|  |  |  \- org.latencyutils:LatencyUtils:jar:2.0.3:runtime
+|  |  +- io.micrometer:context-propagation:jar:1.1.4:compile
+|  |  +- io.netty:netty-transport:jar:4.2.18.Final:compile
+|  |  |  +- io.netty:netty-common:jar:4.2.18.Final:compile
+|  |  |  +- io.netty:netty-buffer:jar:4.2.18.Final:compile
+|  |  |  \- io.netty:netty-resolver:jar:4.2.18.Final:compile
+|  |  +- io.netty:netty-codec-haproxy:jar:4.2.18.Final:compile
+|  |  |  \- io.netty:netty-codec-base:jar:4.2.18.Final:compile
+|  |  +- io.netty:netty-codec-http2:jar:4.2.18.Final:compile
+|  |  |  +- io.netty:netty-handler:jar:4.2.18.Final:compile
+|  |  |  \- io.netty:netty-codec-http:jar:4.2.18.Final:compile
+|  |  |     \- io.netty:netty-codec-compression:jar:4.2.18.Final:compile
+|  |  +- io.netty:netty-resolver-dns:jar:4.2.18.Final:compile
+|  |  |  \- io.netty:netty-codec-dns:jar:4.2.18.Final:compile
+|  |  +- io.netty:netty-transport-native-unix-common:jar:linux-x86_64:4.2.18.Final:runtime
+|  |  +- io.netty:netty-transport-native-unix-common:jar:linux-aarch_64:4.2.18.Final:runtime
+|  |  +- io.netty:netty-transport-native-unix-common:jar:osx-x86_64:4.2.18.Final:runtime
+|  |  +- io.netty:netty-transport-native-unix-common:jar:osx-aarch_64:4.2.18.Final:runtime
+|  |  +- org.reactivestreams:reactive-streams:jar:1.0.4:compile
+|  |  +- org.jspecify:jspecify:jar:1.0.0:compile
+|  |  +- io.netty:netty-handler-proxy:jar:4.2.18.Final:runtime
+|  |  |  \- io.netty:netty-codec-socks:jar:4.2.18.Final:runtime
+|  |  +- io.netty:netty-transport-native-epoll:jar:linux-x86_64:4.2.18.Final:runtime
+|  |  |  +- io.netty:netty-transport-native-unix-common:jar:4.2.18.Final:compile
+|  |  |  \- io.netty:netty-transport-classes-epoll:jar:4.2.18.Final:runtime
+|  |  +- io.netty:netty-transport-native-epoll:jar:linux-aarch_64:4.2.18.Final:runtime
+|  |  +- io.netty:netty-transport-native-kqueue:jar:osx-x86_64:4.2.18.Final:runtime
+|  |  |  \- io.netty:netty-transport-classes-kqueue:jar:4.2.18.Final:runtime
+|  |  +- io.netty:netty-resolver-dns-native-macos:jar:osx-x86_64:4.2.18.Final:runtime
+|  |  |  \- io.netty:netty-resolver-dns-classes-macos:jar:4.2.18.Final:runtime
+|  |  +- io.netty:netty-transport-native-kqueue:jar:osx-aarch_64:4.2.18.Final:runtime
+|  |  +- io.netty:netty-resolver-dns-native-macos:jar:osx-aarch_64:4.2.18.Final:runtime
+|  |  +- io.netty:netty-tcnative-boringssl-static:jar:linux-x86_64:2.0.84.Final:runtime
+|  |  |  \- io.netty:netty-tcnative-classes:jar:2.0.84.Final:runtime
+|  |  +- io.netty:netty-tcnative-boringssl-static:jar:linux-aarch_64:2.0.84.Final:runtime
+|  |  +- io.netty:netty-tcnative-boringssl-static:jar:osx-x86_64:2.0.84.Final:runtime
+|  |  +- io.netty:netty-tcnative-boringssl-static:jar:osx-aarch_64:2.0.84.Final:runtime
+|  |  +- io.netty:netty-tcnative-boringssl-static:jar:windows-x86_64:2.0.84.Final:runtime
+|  |  \- com.aayushatharva.brotli4j:brotli4j:jar:1.23.0:runtime
+|  |     +- com.aayushatharva.brotli4j:service:jar:1.23.0:runtime
+|  |     \- com.aayushatharva.brotli4j:native-osx-aarch64:jar:1.23.0:runtime
+|  +- com.google.protobuf:protobuf-java:jar:3.25.9:compile
+|  +- io.grpc:grpc-core:jar:1.84.0:compile
+|  |  +- io.grpc:grpc-api:jar:1.84.0:compile
+|  |  +- com.google.code.gson:gson:jar:2.13.2:runtime
+|  |  +- com.google.android:annotations:jar:4.1.1.4:runtime
+|  |  +- com.google.guava:guava:jar:33.6.0-android:compile
+|  |  |  +- com.google.guava:failureaccess:jar:1.0.3:compile
+|  |  |  \- com.google.guava:listenablefuture:jar:9999.0-empty-to-avoid-conflict-with-guava:compile
+|  |  +- io.perfmark:perfmark-api:jar:0.27.0:runtime
+|  |  \- io.grpc:grpc-context:jar:1.84.0:runtime
+|  +- io.grpc:grpc-protobuf:jar:1.84.0:compile
+|  |  +- com.google.api.grpc:proto-google-common-protos:jar:2.64.1:compile
+|  |  \- io.grpc:grpc-protobuf-lite:jar:1.84.0:runtime
+|  +- io.grpc:grpc-services:jar:1.84.0:compile
+|  |  +- io.grpc:grpc-util:jar:1.84.0:runtime
+|  |  \- com.google.errorprone:error_prone_annotations:jar:2.50.0:runtime
+|  +- io.grpc:grpc-stub:jar:1.84.0:compile
+|  |  \- org.codehaus.mojo:animal-sniffer-annotations:jar:1.27:compile
+|  +- org.curioswitch.curiostack:protobuf-jackson:jar:2.8.1:compile
+|  |  \- net.bytebuddy:byte-buddy:jar:1.17.8:runtime
+|  +- com.google.code.findbugs:jsr305:jar:3.0.2:compile
+|  +- org.slf4j:slf4j-api:jar:2.0.18:compile
+|  +- com.linecorp.armeria:armeria-grpc-protocol:jar:1.42.0:runtime
+|  +- com.linecorp.armeria:armeria-protobuf:jar:1.42.0:runtime
+|  \- com.google.protobuf:protobuf-java-util:jar:3.25.9:runtime
+|     \- com.google.j2objc:j2objc-annotations:jar:2.8:compile
+\- javax.annotation:javax.annotation-api:jar:1.3.2:compile

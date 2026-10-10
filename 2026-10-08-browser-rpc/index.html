@@ -1,0 +1,8 @@
+<!doctype html><html lang="ko"><meta charset="utf-8"><title>Browser RPC 실험</title>
+<style>body{font:16px system-ui;max-width:900px;margin:40px auto;padding:0 20px}button,select{font:inherit;padding:8px;margin:4px}pre{padding:16px;background:#f1f3f0;white-space:pre-wrap}small{color:#555}</style>
+<h1>같은 서비스, 네 통신 경로</h1>
+<p>경로를 선택하고 호출하세요. Streaming은 1초 간격으로 메시지 5개를 보냅니다.</p>
+<select id="mode"><option value="connect">Connect → 서버 :8090</option><option value="grpcweb">gRPC-Web → Envoy :8091 → gRPC 서버</option><option value="armeria">gRPC-Web → Armeria :8093 (Envoy 없음)</option><option value="rest">Spring REST :8092 (단일 응답)</option></select>
+<div><button id="unary">Unary</button><button id="stream">Streaming</button><button id="failure">3개 후 오류</button><button id="cancel">취소</button><button id="clear">로그 지우기</button></div>
+<p><small>gRPC-Web 경로도 @connectrpc/connect-web 클라이언트를 사용합니다. 공식 grpc-web 클라이언트와 인코딩 제약이 다릅니다.</small></p>
+<pre id="output" aria-live="polite">호출 대기</pre><script type="module" src="/src/browser.js"></script></html>

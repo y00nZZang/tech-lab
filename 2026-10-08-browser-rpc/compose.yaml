@@ -1,0 +1,7 @@
+services:
+  envoy:
+    image: envoyproxy/envoy:v1.35.0@sha256:cfe1c570e72aa4207853a37bd1c32c808a0036a351b16f73732dcfd0e5775175
+    ports:
+      - "127.0.0.1:8091:8080"
+    volumes:
+      - ./envoy.yaml:/etc/envoy/envoy.yaml:ro

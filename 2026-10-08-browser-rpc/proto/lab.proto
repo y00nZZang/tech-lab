@@ -1,0 +1,13 @@
+syntax = "proto3";
+package lab.v1;
+service EchoService {
+  rpc Echo(EchoRequest) returns (EchoReply);
+  rpc Watch(WatchRequest) returns (stream EchoReply);
+}
+message EchoRequest { string text = 1; }
+message WatchRequest {
+  uint32 count = 1;
+  uint32 interval_ms = 2;
+  uint32 fail_after = 3;
+}
+message EchoReply { string text = 1; uint32 sequence = 2; }

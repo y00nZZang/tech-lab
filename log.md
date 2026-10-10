@@ -25,3 +25,7 @@
 - **gRPC/Kubernetes load-balancing experiment**: 장수명 HTTP/2 연결의 Pod 고정 현상을 재현하고 `max_connection_age`와 `Headless Service + round_robin`을 비교하는 합성 실험 및 1차 결과를 추가했습니다.
 - **Initialization**: OKF v0.2 기반의 공개 기술 실험 저장소 구조를 만들었습니다.
 - **Governance**: 실험 디렉터리명, README 필수 내용, 재현성과 공개 안전 규칙을 정의했습니다.
+
+## 2026-10-10 브라우저 RPC 실험 공개
+
+- Connect·gRPC-Web/Envoy 및 Spring REST·Armeria 실습 코드와 검증 기록을 추가했습니다.
